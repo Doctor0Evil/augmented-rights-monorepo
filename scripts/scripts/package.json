@@ -1,0 +1,14 @@
+{
+  "name": "@augmented-rights/scripts",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "scaffold:bundle": "ts-node scaffold-rights-bundle.ts",
+    "seed": "ts-node seed-test-data.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}
