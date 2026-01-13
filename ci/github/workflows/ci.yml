@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install root deps
+        run: yarn install --ignore-engines
+
+      - name: Contracts tests
+        run: |
+          cd contracts
+          yarn install
+          yarn test
+
+      - name: Services build
+        run: |
+          cd services/common && yarn install && yarn build
+          cd ../charter-api && yarn install && yarn build
+          cd ../vault-adapter && yarn install && yarn build
+          cd ../governance-api && yarn install && yarn build
+
+      - name: Wallet lint
+        run: |
+          cd wallet/web-app
+          yarn install
+          yarn lint
