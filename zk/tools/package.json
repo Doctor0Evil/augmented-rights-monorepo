@@ -1,0 +1,18 @@
+{
+  "name": "@augmented-rights/zk-tools",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "compile": "ts-node scripts/compile-circuit.ts",
+    "setup": "ts-node scripts/setup-ptau.ts",
+    "prove": "ts-node scripts/generate-proof.ts"
+  },
+  "dependencies": {
+    "snarkjs": "^0.7.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}
