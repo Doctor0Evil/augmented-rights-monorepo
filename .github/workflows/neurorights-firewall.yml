@@ -1,0 +1,19 @@
+name: Neurorights Firewall Enforcement
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  neurorights-firewall:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ensure NeurorightsBound is used in Cyber-Retrieval router
+        run: |
+          if grep -R "pub async fn handle(" -n crates/cyber_retrieval_router/src | grep -v "NeurorightsBound<PromptEnvelope"; then
+            echo "ERROR: Router handle functions must accept NeurorightsBound<PromptEnvelope, NeurorightsEnvelope>."
+            exit 1
+          fi
+          echo "NeurorightsBound usage check passed."
